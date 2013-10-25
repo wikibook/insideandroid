@@ -1,0 +1,10 @@
+
+#include <helloworld/IHelloWorldService.h>
+#include <helloworld/BpHelloWorldService.h>
+
+namespace android {
+
+//인터페이스 매크로
+IMPLEMENT_META_INTERFACE(HelloWorldService, "android.apps.IHelloWorldService");
+
+};// namespace android

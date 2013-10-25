@@ -1,0 +1,15 @@
+#include <binder/Parcel.h>
+
+#include <helloworld/IHelloWorldService.h>
+
+namespace android {
+class BnHelloWorldService : public BnInterface<IHelloWorldService>
+{
+   public:
+   //BBinder 클래스의 onTransact() 메서드를 재정의한다.
+   virtual status_t onTransact( uint32_t code,
+                  const Parcel& data,
+                  Parcel* reply,
+                  uint32_t flags = 0);
+};
+}; // namespace android

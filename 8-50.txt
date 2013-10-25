@@ -1,0 +1,28 @@
+#include <binder/Parcel.h>
+#include <helloworld/BpHelloWorldService.h>
+
+namespace android{
+
+status_t BpHelloWorldService::helloWorld(const char *str) {
+   Parcel data, reply;
+   //송신용 데이터에 서비스 인터페이스의 이름을 저장한다.
+   data.writeInterfaceToken(
+      IHelloWorldService::getInterfaceDescriptor());
+   //송신용 데이터에 출력 문자열을 저장한다.
+   data.writeCString(str);
+   //BpBinder 클래스의 transact() 메서드를 호출한다.
+   status_t status = remote()->transact(HW_HELLOWORLD, data, &reply);
+   if (status != NO_ERROR) {
+      LOGE("print helloworld error: %s", strerror(-status));
+   } else {
+      //helloWorld() 메서드의 호출 결과를 읽어들인다.
+      status = reply.readInt32();
+   }
+   return status;
+}
+
+BpHelloWorldService::BpHelloWorldService (const sp<IBinder>& impl)
+   : BpInterface<IHelloWorldService>(impl)
+{}
+
+}; // namespace android

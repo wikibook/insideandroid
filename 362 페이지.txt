@@ -1,0 +1,4 @@
+INFO/(315): HelloWorldService is created
+INFO/main_helloworldservice(315): HelloWorldService is starting now
+INFO/main_helloworldclient(317): HelloWorldService client is now starting
+INFO/(315): hello, world
